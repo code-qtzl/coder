@@ -1,5 +1,5 @@
 import { type FormikContextType, useFormik } from "formik";
-import { ArrowLeft, CircleHelp, ExternalLinkIcon } from "lucide-react";
+import { ArrowLeft, ExternalLinkIcon } from "lucide-react";
 import {
 	type FC,
 	useCallback,
@@ -33,10 +33,10 @@ import { Link } from "#/components/Link/Link";
 import { Spinner } from "#/components/Spinner/Spinner";
 import { Switch } from "#/components/Switch/Switch";
 import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from "#/components/Tooltip/Tooltip";
+	HelpPopover,
+	HelpPopoverContent,
+	HelpPopoverIconTrigger,
+} from "#/components/HelpPopover/HelpPopover";
 import { WorkspaceUserAutocomplete } from "#/components/UserAutocomplete/UserAutocomplete";
 import { useDebouncedFunction } from "#/hooks/debounce";
 import type { ExternalAuthPollingState } from "#/hooks/useExternalAuth";
@@ -420,24 +420,22 @@ export const CreateWorkspacePageView: FC<CreateWorkspacePageViewProps> = ({
 					<span className="flex flex-row items-center gap-2">
 						<h1 className="text-3xl font-semibold m-0">New workspace</h1>
 
-						<Tooltip>
-							<TooltipTrigger asChild>
-								<CircleHelp className="size-icon-xs text-content-secondary" />
-							</TooltipTrigger>
-							<TooltipContent className="max-w-xs text-sm">
-								Dynamic Parameters enhances Coder's existing parameter system
-								with real-time validation, conditional parameter behavior, and
-								richer input types.
-								<br />
-								<Link
-									href={docs(
-										"/admin/templates/extending-templates/dynamic-parameters",
-									)}
-								>
-									View docs
-								</Link>
-							</TooltipContent>
-						</Tooltip>
+					<HelpPopover>
+						<HelpPopoverIconTrigger />
+						<HelpPopoverContent className="max-w-xs text-sm">
+							Dynamic Parameters enhances Coder's existing parameter system
+							with real-time validation, conditional parameter behavior, and
+							richer input types.
+							<br />
+							<Link
+								href={docs(
+									"/admin/templates/extending-templates/dynamic-parameters",
+								)}
+							>
+								View docs
+							</Link>
+						</HelpPopoverContent>
+					</HelpPopover>
 					</span>
 				</header>
 
